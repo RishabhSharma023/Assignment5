@@ -1,4 +1,8 @@
 import { useState } from 'react'
+import Feature from './Components/Feature.jsx'
+import Footer from './Components/Footer.jsx'
+import Header from './Components/Header.jsx'
+import Hero from './Components/Hero.jsx'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
