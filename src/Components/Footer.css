@@ -1,0 +1,14 @@
+.footer {
+    background-color: #222;
+    color: white;
+    padding: 10px;
+  }
+  
+  .footer a {
+    color: #ccc;
+    margin: 0 5px;
+  }
+  
+  .footer a:hover {
+    color: #fff;
+  }
