@@ -1,16 +1,16 @@
 import './Feature.css';
 
 function Featured() {
-  return (
-    <div className="featured">
-      <h2>Featured Movies</h2>
-      <div className="posters">
-        <img className="poster" src="endGame.jpg" alt="Movie 1" />
-        <img className="poster" src="fatws.jpg" alt="Movie 2" />
-        <img className="poster" src="infWar.jpg" alt="Movie 3" />
-      </div>
-    </div>
-  );
+    return (
+        <div className="featured">
+            <h2>Other Shows and Movies You May Like:</h2>
+            <div className="posters">
+                <img class="poster" src="infWar.jpg" alt="" />
+                <img class="poster" src="endGame.jpg" alt="" />
+                <img class="poster" src="fatws.jpg" alt="" />
+            </div>
+        </div>
+    );
 }
 
 export default Featured;
