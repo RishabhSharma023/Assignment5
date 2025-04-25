@@ -3,23 +3,8 @@ import Header from './Components/Header.jsx';
 import Hero from './Components/Hero.jsx';
 import Featured from './Components/Feature.jsx';
 import Footer from './Components/Footer.jsx';
-
-/*function App() {
-    return (
-        <div className="app">
-            <Header />
-            <Hero />
-            <Featured />
-            <Footer />
-        </div>
-    );
-}
-
-export default App;*/
-
 import axios from "axios";
 import { useEffect, useState } from "react";
-import './App.css';
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -35,10 +20,11 @@ function App() {
 
   return (
     <div className="movie-container">
-            <Header />
-            <Hero />
-            <Featured />
-            <Footer />
+      <Header />
+      <Hero />
+      {/* Pass the first 3 movies to the Featured component */}
+      <Featured movies={movies.slice(0, 3)} />
+      <Footer />
       {movies && movies.map(movie => (
         <div className="movie-card" key={movie.id}>
           <h1>{`${movie.title}`}</h1>
@@ -46,8 +32,6 @@ function App() {
         </div>
       ))}
     </div>
-
-    
   );
 }
 
