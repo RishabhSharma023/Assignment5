@@ -18,11 +18,15 @@ function Featured() {
     return (
         <div className="featured-container">
             <h1>Featured Movies</h1>
-            <div className="featured-movies">
+            <div className="featured-movie">
                 {movies.map(movie => (
                     <div className="movie-card" key={movie.id}>
                         <h2>{movie.title}</h2>
-                        <img className="movie-poster" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={`${movie.title}`} />
+                        <img 
+                        className="movie-poster"
+                        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                        alt={movie.title}
+                        />
                     </div>
                 ))}
             </div>
