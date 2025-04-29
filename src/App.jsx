@@ -1,23 +1,27 @@
-import './App.css';
-import Featured from './Components/Feature.jsx';
-import Footer from './Components/Footer.jsx';
-import Header from './Components/Header.jsx';
-import Hero from './Components/Hero.jsx';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./App.css";
+import HomeView from "./views/HomeView.jsx";
+import SignInView from "./views/SignInView.jsx";
+import SignUpView from "./views/SignUpView.jsx";
+import MoviesView from "./views/MoviesView.jsx";
+import GenreView from "./views/GenreView.jsx";
+import DetailView from "./views/DetailView.jsx";
+
 
 function App() {
-    return (
-        <div className="App">
-            <div className="header">
-                <div className="title">Amazin' Prime Video</div>
-                <Header />
-            </div>
-            <Hero />
-            <div className="featured-section">
-                <Featured />
-            </div>
-            <Footer />
-        </div>
-    );
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomeView />} />
+        <Route path="/signin" element={<SignInView />} />
+        <Route path="/signup" element={<SignUpView />} />
+        <Route path="/movies" element={<MoviesView />}>
+          <Route path="genre/:genre_id" element={<GenreView />} />
+          <Route path="details/:id" element={<DetailView />} />
+        </Route>
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;

@@ -1,0 +1,90 @@
+/* Basic body and layout styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+  }
+  
+  .app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  h1.movieview-title {
+    font-size: 2.5rem;
+    color: #333;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  
+  /* Container for the genre and movie sections */
+  .genre-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 15px;
+    flex: 1;
+    padding: 20px 0;
+  }
+  
+  .genre-list {
+    flex: 1;
+    padding-right: 20px;
+    border-right: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .genre-list a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.1rem;
+    padding: 10px 0;
+    margin: 5px 0;
+    transition: color 0.3s ease;
+  }
+  
+  .genre-list a:hover {
+    color: #007bff;
+  }
+  
+  .genre-movies {
+    flex: 3;
+    padding-left: 20px;
+  }
+  
+  footer {
+    margin-top: 30px;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 10px;
+  }
+  
+  /* Flexbox for responsive design */
+  @media (max-width: 768px) {
+    .genre-container {
+      flex-direction: column;
+      padding: 10px;
+    }
+  
+    .genre-list {
+      padding-right: 0;
+      border-right: none;
+      margin-bottom: 20px;
+    }
+  
+    .genre-movies {
+      padding-left: 0;
+    }
+  
+    h1.movieview-title {
+      font-size: 2rem;
+      margin-top: 15px;
+    }
+  }
+  
