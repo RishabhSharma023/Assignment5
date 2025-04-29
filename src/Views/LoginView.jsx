@@ -1,44 +1,52 @@
-import React, { useState } from "react";
 import "./LoginView.css";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Header from "../Components/Header.jsx";
 
-const LoginView = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+function LoginView() {
+    const navigate = useNavigate();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const adminEmail = "rishabh@gmail.com";
+    const adminPassword = "password";
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    const correctPassword = "password";
-    if (password === correctPassword) {
-      alert("Logged in!");
-    } else {
-      alert("Incorrect password. Try again.");
+    function handleSubmit(event) {
+        event.preventDefault(); // Prevents page reload
+        if (email === adminEmail && password === adminPassword) {
+            alert("Login successful!");
+            navigate("/movies"); // Redirect to MoviesView
+        } else {
+            alert("Incorrect email or password.");
+        }
     }
-  };
 
-  return (
-    <div className="login-container">
-      <h1 className="login-title">Login</h1>
-      <form onSubmit={handleLogin} className="login-form">
-        <label>Email:</label>
-        <input
-          type="email"
-          placeholder="Enter user email or user"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <label>Password:</label>
-        <input
-          type="password"
-          placeholder="Enter your password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit" className="login-button">
-          Login
-        </button>
-      </form>
-    </div>
-  );
-};
+    return (
+        <div>
+            <Header />
+            <div className="formContainerLog">
+                <h1 className="formTitleLog">Login</h1>
+                <form className="formLog" onSubmit={handleSubmit}>
+                    <label className="boxLabelsLog">Email:</label>
+                    <input
+                        required
+                        className="infoBoxesLog"
+                        type="text"
+                        value={email}
+                        onChange={(event) => setEmail(event.target.value)}
+                    />
+                    <label className="boxLabelsLog">Password:</label>
+                    <input
+                        required
+                        className="infoBoxesLog"
+                        type="password"
+                        value={password}
+                        onChange={(event) => setPassword(event.target.value)}
+                    />
+                    <input className="loginButtonLog" type="submit" value="Login" />
+                </form>
+            </div>
+        </div>
+    );
+}
 
 export default LoginView;

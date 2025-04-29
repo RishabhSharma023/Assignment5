@@ -1,60 +1,99 @@
 .genre-view {
-    padding: 40px 20px;
-    background-color: #f4f4f9;
-    min-height: 80vh;
+  padding: 40px 20px;
+  background-color: #f4f4f9;
+  min-height: 80vh;
+}
+
+.moviesContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+}
+
+.moviePoster {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.moviePoster:hover {
+  transform: scale(1.05);
+}
+
+.posterContainer img {
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid #ddd;
+}
+
+.movieTitle {
+  font-size: 1rem;
+  color: #333;
+  text-align: center;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.pageSelector {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.pageNumberBox {
+  width: 50px;
+  text-align: center;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.prevButton,
+.nextButton {
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #ffffff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.prevButton:hover,
+.nextButton:hover {
+  background-color: #0056b3;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .moviesContainer {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }
-  
-  .genre-view h1 {
-    text-align: center;
-    font-size: 32px;
-    color: #333;
-    margin-bottom: 30px;
+
+  .movieTitle {
+      font-size: 0.9rem;
   }
-  
-  .error-message {
-    color: red;
-    text-align: center;
-    font-size: 16px;
-    margin-bottom: 20px;
+
+  .prevButton,
+  .nextButton {
+      font-size: 0.9rem;
+      padding: 8px 16px;
   }
-  
-  .genres-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-  }
-  
-  .genre-item {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 220px;
-    text-align: center;
-  }
-  
-  .genre-item a {
-    text-decoration: none;
-    color: #007bff;
-    font-size: 18px;
-    font-weight: 600;
-  }
-  
-  .genre-item a:hover {
-    text-decoration: underline;
-    color: #0056b3;
-  }
-  
-  @media (max-width: 768px) {
-    .genres-container {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .genre-item {
-      width: 100%;
-      max-width: 300px;
-    }
-  }
-  
+}

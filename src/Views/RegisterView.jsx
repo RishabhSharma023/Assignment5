@@ -1,61 +1,76 @@
-import {useState} from 'react';
-import {useNavigate} from 'react-router-dom';
-import {Link} from 'react-router-dom';
-import './RegisterView.css';
+import "./RegisterView.css";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Header from "../Components/Header.jsx";
 
-function RegisterView(){
+function RegisterView() {
     const navigate = useNavigate();
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-  
-    const handleSubmit = (event) => {
-      event.preventDefault();
-  
-      if (password != confirmPassword) {
-        alert("Password Don't Match")
-      } else {
-        navigate('/signin');
-      }
-    };
-  
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [rePassword, setRePassword] = useState("");
+
+    function handleSubmit(event) {
+        event.preventDefault(); // Prevents page reload
+        if (password === rePassword) {
+            alert("Registration successful!");
+            navigate("/movies"); // Redirect to MoviesView
+        } else {
+            alert("Passwords do not match.");
+        }
+    }
+
     return (
-      <div>
-        <nav className="logo-nav">
-          <Link to="/"><img src="../src/imgs/logo.png" /></Link>
-        </nav>
-        <div className="sign-up-page">
-          <div className="sign-up">
-            <h2>SIGN UP</h2>
-            <form onSubmit={handleSubmit}>
-              <div className="info">
-                <input type="text" name="first" required />
-                <label>First Name</label>
-              </div>
-              <div className="info">
-                <input type="text" name="last" required />
-                <label>Last Name</label>
-              </div>
-              <div className="info">
-                <input type="email" name="email" required />
-                <label>Email</label>
-              </div>
-              <div className="info">
-                <input type="password" name="password" onChange={(e) => setPass(e.target.value)} required />
-                <label>Password</label>
-              </div>
-              <div className="info">
-                <input type="password" name="confirmPassword" onChange={(e) => setConfirmPass(e.target.value)} required />
-                <label>Confirm Password</label>
-              </div>
-              <button className="sign-up-btn" type="submit">Sign Up</button>
-              <div className="help">
-                <Link to="#">Need help?</Link>
-              </div>
-            </form>
-            <p>Already Have An Account? <Link to="/signin">Sign In</Link></p>
-          </div>
+        <div>
+            <Header />
+            <div className="formContainerReg">
+                <h1 className="formTitleReg">Register</h1>
+                <form className="formReg" onSubmit={handleSubmit}>
+                    <label className="boxLabelsReg">First Name:</label>
+                    <input
+                        required
+                        className="infoBoxesReg"
+                        type="text"
+                        value={firstName}
+                        onChange={(event) => setFirstName(event.target.value)}
+                    />
+                    <label className="boxLabelsReg">Last Name:</label>
+                    <input
+                        required
+                        className="infoBoxesReg"
+                        type="text"
+                        value={lastName}
+                        onChange={(event) => setLastName(event.target.value)}
+                    />
+                    <label className="boxLabelsReg">Email:</label>
+                    <input
+                        required
+                        className="infoBoxesReg"
+                        type="email"
+                        value={email}
+                        onChange={(event) => setEmail(event.target.value)}
+                    />
+                    <label className="boxLabelsReg">Password:</label>
+                    <input
+                        required
+                        className="infoBoxesReg"
+                        type="password"
+                        value={password}
+                        onChange={(event) => setPassword(event.target.value)}
+                    />
+                    <label className="boxLabelsReg">Re-enter Password:</label>
+                    <input
+                        required
+                        className="infoBoxesReg"
+                        type="password"
+                        value={rePassword}
+                        onChange={(event) => setRePassword(event.target.value)}
+                    />
+                    <input className="registerButtonReg" type="submit" value="Register" />
+                </form>
+            </div>
         </div>
-      </div>
     );
 }
 

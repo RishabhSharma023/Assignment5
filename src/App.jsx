@@ -1,26 +1,23 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import HomeView from "./views/HomeView.jsx";
-import SignInView from "./views/SignInView.jsx";
-import SignUpView from "./views/SignUpView.jsx";
-import MoviesView from "./views/MoviesView.jsx";
-import GenreView from "./views/GenreView.jsx";
-import DetailView from "./views/DetailView.jsx";
-
+import HomeView from "./Views/HomeView";
+import RegisterView from "./Views/RegisterView";
+import LoginView from "./Views/LoginView";
+import MoviesView from "./Views/MoviesView";
+import DetailView from "./Views/DetailView";
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomeView />} />
-        <Route path="/signin" element={<SignInView />} />
-        <Route path="/signup" element={<SignUpView />} />
+        <Route path="/register" element={<RegisterView />} />
+        <Route path="/login" element={<LoginView />} />
         <Route path="/movies" element={<MoviesView />}>
-          <Route path="genre/:genre_id" element={<GenreView />} />
-          <Route path="details/:id" element={<DetailView />} />
+          <Route path=":movieId" element={<DetailView />} />
         </Route>
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 }
 
