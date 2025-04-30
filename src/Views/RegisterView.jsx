@@ -12,10 +12,11 @@ function RegisterView() {
     const [rePassword, setRePassword] = useState("");
 
     function handleSubmit(event) {
-        event.preventDefault(); // Prevents page reload
+        event.preventDefault();
         if (password === rePassword) {
+            localStorage.setItem("isLoggedIn", "true");
             alert("Registration successful!");
-            navigate("/movies"); // Redirect to MoviesView
+            navigate("/movies");
         } else {
             alert("Passwords do not match.");
         }

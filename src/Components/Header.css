@@ -61,3 +61,18 @@
   transform: scale(1.05);
   transition: transform 0.25s;
 }
+
+.signOutButton {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #4c7dd4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.signOutButton:hover {
+  background-color: #1e90ff;
+}

@@ -1,7 +1,8 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #f4f4f9;
+  background-color: black; /* Matches the app's dark theme */
+  color: #4c7dd4; /* Matches the app's primary color */
 }
 
 .formContainerLog {
@@ -9,18 +10,25 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  padding: 20px;
-  background-color: #ffffff;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  max-width: 400px;
-  margin: 0 auto;
+  padding: 30px 40px; /* Increased horizontal padding */
+  background-color: #1a1a1a; /* Dark background for the form */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  max-width: 600px; /* Widened container */
+  width: 100%;
+  margin: 60px auto; /* Centers the form and adds top spacing */
+}
+
+.headerLog {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #4c7dd4;
+  margin-bottom: 20px;
 }
 
 .formTitleLog {
   font-size: 2rem;
-  color: #333;
+  color: #4c7dd4;
   margin-bottom: 20px;
   text-align: center;
 }
@@ -29,25 +37,27 @@ body {
   width: 100%;
   display: flex;
   flex-direction: column;
+  gap: 15px; /* Adds consistent spacing between form elements */
 }
 
 .boxLabelsLog {
   font-size: 1rem;
-  color: #555;
+  color: #4c7dd4;
   margin-bottom: 5px;
 }
 
 .infoBoxesLog {
   width: 100%;
   padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  border: 1px solid #4c7dd4;
+  border-radius: 5px;
   font-size: 1rem;
+  background-color: #000000;
+  color: #ffffff;
 }
 
 .infoBoxesLog:focus {
-  border-color: #007bff;
+  border-color: #1e90ff;
   outline: none;
 }
 
@@ -55,13 +65,34 @@ body {
   padding: 10px 20px;
   font-size: 1rem;
   color: #ffffff;
-  background-color: #007bff;
+  background-color: #4c7dd4;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .loginButtonLog:hover {
-  background-color: #0056b3;
+  background-color: #1e90ff;
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .formContainerLog {
+    padding: 20px;
+    width: 90%;
+  }
+
+  .formTitleLog {
+    font-size: 1.8rem;
+  }
+
+  .infoBoxesLog {
+    font-size: 0.9rem;
+  }
+
+  .loginButtonLog {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
 }

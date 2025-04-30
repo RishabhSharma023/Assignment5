@@ -3,6 +3,12 @@ import { useNavigate } from 'react-router-dom';
 
 function Header() {
     const navigate = useNavigate();
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
+    function handleSignOut() {
+        localStorage.removeItem("isLoggedIn");
+        navigate("/");
+    }
 
     return (
         <header className="header">
@@ -11,8 +17,14 @@ function Header() {
                 <img className="logoImg" src="/amazingprimeVid.png" alt="Logo" />
             </div>
             <div className="login-container">
-                <button className="button" onClick={() => navigate('/login')}>Login</button>
-                <button className="button" onClick={() => navigate('/register')}>Register</button>
+                {isLoggedIn ? (
+                    <button className="button" onClick={handleSignOut}>Sign Out</button>
+                ) : (
+                    <>
+                        <button className="button" onClick={() => navigate('/login')}>Login</button>
+                        <button className="button" onClick={() => navigate('/register')}>Register</button>
+                    </>
+                )}
             </div>
         </header>
     );

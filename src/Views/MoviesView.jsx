@@ -6,7 +6,7 @@ import GenreView from './GenreView.jsx'
 import DetailView from './DetailView.jsx'
 import "./MoviesView.css"
 
-function MoviesView() {
+function MoviesView({ showGenresList = true }) {
    const listOfGenres = [
       { "genreName": "Action", "id": 28 },
       { "genreName": "Adventure", "id": 12 },
@@ -19,8 +19,8 @@ function MoviesView() {
       { "genreName": "Western", "id": 37 },
       { "genreName": "Family", "id": 10751 },
    ];
-   const [genreSelected, setGenreSelected] = useState(28); //Uses id:28 action as a default display
-   const [movieIdClicked, setMovieIdClicked] = useState(912649); //Uses Venom last dance as default movie
+   const [genreSelected, setGenreSelected] = useState(28);
+   const [movieIdClicked, setMovieIdClicked] = useState(912649);
    const [detailViewDisplayed, setdetailViewDisplayed] = useState(false);
    const [clickedFromFeature, setClickedFromFeature] = useState(false);
 
@@ -43,10 +43,12 @@ function MoviesView() {
       <div>
          <Header />
          <div className='genre-section'>
-            <div className='genre-list' >
-               <GenresList selectGenreId={setGenreId} genresList={listOfGenres} genreSelected={genreSelected} />
-            </div>
-            <div className='genre-view' >
+            {showGenresList && (
+               <div className='genre-list'>
+                  <GenresList selectGenreId={setGenreId} genresList={listOfGenres} genreSelected={genreSelected} />
+               </div>
+            )}
+            <div className='genre-view'>
                {detailViewDisplayed ?
                   <DetailView movieId={movieIdClicked} backToGenre={returnToGenreView} clickedFromFeature={clickedFromFeature} />
                   : <GenreView genreId={genreSelected} enterDetailView={setMovieIdValue} />}
