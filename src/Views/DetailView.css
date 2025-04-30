@@ -3,22 +3,21 @@ body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background-color: black; /* Matches the app's dark theme */
-  color: #4c7dd4; /* Matches the app's primary color */
+  background-color: black; 
+  color: #4c7dd4; 
 }
 
 .detail-view-container {
   margin: 20px auto;
   padding: 20px;
   max-width: 800px;
-  background-color: #1a1a1a; /* Dark background for the detail view */
+  background-color: #1a1a1a; 
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
   overflow: hidden;
-  color: #4c7dd4; /* Text color */
-  display: flex;
+  color: #4c7dd4; 
   flex-direction: column;
-  align-items: center; /* Center content */
+  align-items: center; 
   gap: 20px;
 }
 
@@ -34,7 +33,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  text-align: center; /* Center text */
+  text-align: center; 
 }
 
 .detail-info h1 {
@@ -55,13 +54,13 @@ body {
 }
 
 .detail-info .info-header {
-  color: #1e90ff; /* Blue for headers */
+  color: #1e90ff; 
   font-weight: bold;
   margin-top: 10px;
 }
 
 .detail-info .info-content {
-  color: #ffffff; /* White for content */
+  color: #ffffff; 
 }
 
 .productionCompanies {
@@ -84,7 +83,7 @@ body {
 
 .companiesList li {
   margin: 5px 0;
-  color: #ffffff; /* White text for better readability */
+  color: #ffffff; 
 }
 
 .trailer-section {
@@ -148,18 +147,18 @@ body {
 .movieDetails {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center content horizontally */
-  justify-content: center; /* Center content vertically */
+  align-items: center; 
+  justify-content: center; 
   padding: 20px;
-  background-color: #1a1a1a; /* Dark background for the detail view */
+  background-color: #1a1a1a; 
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-  color: #4c7dd4; /* Text color */
+  color: #4c7dd4; 
 }
 
 .moviePoster {
   display: block;
-  margin: 0 auto; /* Center the poster horizontally */
+  margin: 0 auto; 
   max-width: 300px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);

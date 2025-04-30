@@ -5,7 +5,7 @@ import RegisterView from "./Views/RegisterView";
 import LoginView from "./Views/LoginView";
 import MoviesView from "./Views/MoviesView";
 import DetailView from "./Views/DetailView";
-import ErrorView from "./Views/ErrorView"; // Import the ErrorView component
+import ErrorView from "./Views/ErrorView";
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
         <Route path="/login" element={<LoginView />} />
         <Route path="/movies" element={<MoviesView showGenresList={true} />} />
         <Route path="/movies/:movieId" element={<DetailView />} />
-        <Route path="*" element={<ErrorView />} /> {/* Catch-all route for invalid paths */}
+        <Route path="*" element={<ErrorView />} /> {}
       </Routes>
     </BrowserRouter>
   );

@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-// Define all genres with their IDs
 const GENRES = [
     { id: 28, name: "Action" },
     { id: 12, name: "Adventure" },
@@ -23,10 +22,10 @@ function GenreView() {
     const [movies, setMovies] = useState([]);
     const [maxPages, setMaxPages] = useState(1);
     const [page, setPage] = useState(1);
-    const navigate = useNavigate(); // For navigation
+    const navigate = useNavigate();
 
     useEffect(() => {
-        setPage(1); // Reset to first page on genre change
+        setPage(1);
     }, [selectedGenre]);
 
     useEffect(() => {
@@ -74,7 +73,7 @@ function GenreView() {
                                 <div key={movie.id} className="moviePoster">
                                     <div
                                         className="posterContainer"
-                                        onClick={() => navigate(`/movies/${movie.id}`)} // Navigate to DetailView
+                                        onClick={() => navigate(`/movies/${movie.id}`)}
                                     >
                                         <img
                                             src={

@@ -10,8 +10,9 @@ function Featured() {
             const response = await axios.get(
                 `https://api.themoviedb.org/3/movie/now_playing?api_key=${import.meta.env.VITE_TMDB_KEY}`
             );
-            const shuffledMovies = response.data.results.sort(() => 0.5 - Math.random()); 
-            setMovies(shuffledMovies.slice(0, 3));
+
+            const randoMovies = response.data.results.sort(() => 0.5 - Math.random());
+            setMovies(randoMovies.slice(0, 3));
         }
 
         getData();
@@ -19,7 +20,7 @@ function Featured() {
 
     return (
         <div className="movie-container">
-            {movies.slice(0,3).map(movie => (
+            {movies.slice(0, 3).map(movie => (
                 <div className="movie-card" key={movie.id}>
                     <h1>{movie.title}</h1>
                     <img

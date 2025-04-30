@@ -6,10 +6,10 @@ import { useParams, useNavigate } from "react-router-dom";
 function DetailView({ movieId: propMovieId, backToGenre, clickedFromFeature }) {
     const navigate = useNavigate();
     const params = useParams();
-    const [movie, setMovie] = useState(null); // Start with null
-    const [director, setDirector] = useState(null); // Store the director's name
-    const [isLoading, setIsLoading] = useState(true); // Loading state
-    const movieId = propMovieId || params.movieId; // Use prop or URL param
+    const [movie, setMovie] = useState(null);
+    const [director, setDirector] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+    const movieId = propMovieId || params.movieId;
 
     useEffect(() => {
         async function getMovie() {
@@ -20,7 +20,6 @@ function DetailView({ movieId: propMovieId, backToGenre, clickedFromFeature }) {
                 );
                 setMovie(response.data);
 
-                // Extract the director from the crew array
                 const directorInfo = response.data.credits.crew.find(
                     (crewMember) => crewMember.job === "Director"
                 );
