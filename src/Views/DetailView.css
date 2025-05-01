@@ -1,189 +1,125 @@
-body {
-  align-items: center;
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-  background-color: black; 
-  color: #4c7dd4; 
-}
-
-.detail-view-container {
-  margin: 20px auto;
-  padding: 20px;
-  max-width: 800px;
-  background-color: #1a1a1a; 
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-  overflow: hidden;
-  color: #4c7dd4; 
+.movie-detail {
+  display: flex;
   flex-direction: column;
-  align-items: center; 
-  gap: 20px;
+  align-items: center;
+  padding: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: #000000; /* Black background */
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Slightly darker shadow */
 }
 
-.detail-view-poster {
+.movie-content {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center items horizontally */
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.movie-poster {
   width: 100%;
   max-width: 300px;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Slightly darker shadow */
 }
 
-.detail-info {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  text-align: center; 
-}
-
-.detail-info h1 {
-  font-size: 2rem;
-  color: #4c7dd4;
-  margin-bottom: 10px;
-}
-
-.detail-info p {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #ffffff;
-}
-
-.detail-info span {
+.movie-title {
+  font-size: 2.8rem; /* Slightly larger font size to prevent cutting */
   font-weight: bold;
-  color: #4c7dd4;
+  margin-bottom: 20px;
+  color: #4c7dd4; /* Blue title */
+  word-wrap: break-word; /* Ensure long titles wrap to the next line */
+  text-align: center; /* Center the title */
 }
 
-.detail-info .info-header {
-  color: #1e90ff; 
-  font-weight: bold;
-  margin-top: 10px;
+.movie-info {
+  text-align: center; /* Center text */
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: #4c7dd4; /* Blue text for information */
 }
 
-.detail-info .info-content {
-  color: #ffffff; 
-}
-
-.productionCompanies {
-  margin-top: 20px;
-}
-
-.productionCompanies h1 {
-  font-size: 1.5rem;
-  color: #4c7dd4;
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-.companiesList {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  text-align: center;
-}
-
-.companiesList li {
+.movie-info p {
   margin: 5px 0;
-  color: #ffffff; 
 }
 
-.trailer-section {
-  margin-top: 30px;
+.movie-overview {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  padding: 0 20px; /* Add padding for better readability */
+  text-align: justify;
+  color: #e8eaed; /* Light gray for readability */
+}
+
+.trailers-section {
+  width: 100%;
+  margin-top: 20px;
+  text-align: center; /* Center the trailers section */
+}
+
+.trailers-section h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #4c7dd4; /* Blue heading for trailers */
+}
+
+.trailers-grid {
+  display: grid; /* Use grid layout */
+  grid-template-columns: repeat(3, 1fr); /* 3 columns wide */
+  gap: 20px; /* Space between grid items */
+  justify-content: center; /* Center the grid items */
+  width: 100%; /* Ensure the grid takes full width */
+}
+
+.trailer-tile {
   text-align: center;
+  background-color: #1a1a1a; /* Add a background for better visibility */
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Add shadow for better aesthetics */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.trailer-text {
-  font-size: 1.5rem;
-  color: #4c7dd4;
-  margin-bottom: 15px;
+.trailer-tile:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7); /* Darker shadow on hover */
 }
 
-.teaserTrailers {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
-
-.trailerTile {
-  width: 200px;
-  text-align: center;
-}
-
-.trailerThumbnail {
+.trailer-thumbnail {
   width: 100%;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Slightly darker shadow */
   transition: transform 0.3s ease;
 }
 
-.trailerThumbnail:hover {
+.trailer-thumbnail:hover {
   transform: scale(1.05);
 }
 
-.trailerName {
-  font-size: 1rem;
-  color: #4c7dd4;
+.trailer-name {
   margin-top: 10px;
-}
-
-.backButton {
-  display: block;
-  margin: 20px auto;
-  padding: 10px 20px;
   font-size: 1rem;
-  color: #ffffff;
-  background-color: #4c7dd4;
+  color: #4c7dd4; /* Blue text for trailer names */
+  font-weight: bold;
+  text-align: center;
+}
+
+.back-button {
+  margin-bottom: 20px;
+  background-color: #1e90ff;
+  color: white;
   border: none;
-  border-radius: 5px;
+  padding: 10px 16px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
 }
 
-.backButton:hover {
-  background-color: #3a3a3a;
-  transform: scale(1.05);
-}
-
-.movieDetails {
-  display: flex;
-  flex-direction: column;
-  align-items: center; 
-  justify-content: center; 
-  padding: 20px;
-  background-color: #1a1a1a; 
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-  color: #4c7dd4; 
-}
-
-.moviePoster {
-  display: block;
-  margin: 0 auto; 
-  max-width: 300px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
-}
-
-@media (max-width: 768px) {
-  .detail-view-container {
-    padding: 15px;
-  }
-
-  .detail-view-poster {
-    width: 100%;
-    max-width: 250px;
-  }
-
-  .detail-info {
-    width: 100%;
-  }
-
-  .teaserTrailers {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .trailerTile {
-    width: 100%;
-  }
+.back-button:hover {
+  background-color: #1c7ed6;
 }

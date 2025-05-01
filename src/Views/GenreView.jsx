@@ -1,136 +1,84 @@
-import "./GenreView.css";
-import { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import "./GenreView.css";
 
-const GENRES = [
-    { id: 28, name: "Action" },
-    { id: 12, name: "Adventure" },
-    { id: 16, name: "Animation" },
-    { id: 14, name: "Fantasy" },
-    { id: 878, name: "Science Fiction" },
-    { id: 10752, name: "War" },
-    { id: 35, name: "Comedy" },
-    { id: 9648, name: "Mystery" },
-    { id: 37, name: "Western" },
-    { id: 10751, name: "Family" }
+const genres = [
+  { genre: "Action", id: 28 },
+  { genre: "Adventure", id: 12 },
+  { genre: "Animation", id: 16 },
+  { genre: "Comedy", id: 35 },
+  { genre: "Family", id: 10751 },
+  { genre: "Fantasy", id: 14 },
+  { genre: "History", id: 36 },
+  { genre: "Horror", id: 27 },
+  { genre: "Sci-Fi", id: 878 },
+  { genre: "Thriller", id: 53 },
 ];
 
 function GenreView() {
-    const [selectedGenre, setSelectedGenre] = useState(28);
-    const [fetchingMovies, setFetchingMovies] = useState(true);
-    const [movies, setMovies] = useState([]);
-    const [maxPages, setMaxPages] = useState(1);
-    const [page, setPage] = useState(1);
-    const navigate = useNavigate();
+  const { genre_id } = useParams();
+  const [movies, setMovies] = useState([]);
+  const [page, setPage] = useState(1);
+  const selectedGenre = genres.find((genre) => genre.id === parseInt(genre_id));
+  const genreName = selectedGenre ? selectedGenre.genre : "Movies in Genre";
 
-    useEffect(() => {
-        setPage(1);
-    }, [selectedGenre]);
+  useEffect(() => {
+    async function fetchMovies() {
+      try {
+        const response = await axios.get(
+          `https://api.themoviedb.org/3/discover/movie?api_key=${import.meta.env.VITE_TMDB_KEY}&with_genres=${genre_id}&page=${page}`
+        );
+        setMovies(response.data.results);
+      } catch (error) {
+        console.error("Error fetching movies:", error);
+      }
+    }
+    fetchMovies();
+  }, [genre_id, page]);
 
-    useEffect(() => {
-        (async function getMovies() {
-            setFetchingMovies(true);
-            try {
-                const response = await axios.get(
-                    `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc&with_genres=${selectedGenre}&api_key=${import.meta.env.VITE_TMDB_KEY}`
-                );
-                setMovies(response.data.results);
-                setMaxPages(response.data.total_pages);
-            } catch (error) {
-                console.error("ERROR in fetching movies", error);
-            } finally {
-                setFetchingMovies(false);
-            }
-        })();
-    }, [selectedGenre, page]);
-
-    return (
-        <div className="genre-layout">
-            <div className="genre-sidebar">
-                <h2>Genres</h2>
-                <ul className="genre-list">
-                    {GENRES.map((genre) => (
-                        <li key={genre.id}>
-                            <button
-                                className={`genre-button ${selectedGenre === genre.id ? "active" : ""}`}
-                                onClick={() => setSelectedGenre(genre.id)}
-                            >
-                                {genre.name}
-                            </button>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-
-            <div className="genre-main">
-                {fetchingMovies ? (
-                    <p>Loading...</p>
+  return (
+    <div className="hero">
+      <h2>{genreName}</h2>
+      <div className="genre-view-container">
+        {movies.length > 0 ? (
+          movies.map((movie) => (
+            <div key={movie.id} className="genre-view-item">
+              <Link to={`/movies/details/${movie.id}`}>
+                {movie.poster_path ? (
+                  <img
+                    src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
+                    alt={movie.title}
+                    className="genre-view-image"
+                  />
                 ) : (
-                    <>
-                        <div className="genre-posters">
-                            {movies.map((movie) => (
-                                <div key={movie.id} className="moviePoster">
-                                    <div
-                                        className="posterContainer"
-                                        onClick={() => navigate(`/movies/${movie.id}`)}
-                                    >
-                                        <img
-                                            src={
-                                                movie.poster_path
-                                                    ? `https://image.tmdb.org/t/p/w400${movie.poster_path}`
-                                                    : `https://placehold.co/300x450?text=Movie+Poster+Unavailable`
-                                            }
-                                            alt={movie.title}
-                                        />
-                                    </div>
-                                    <h1 className="movieTitle">{movie.title}</h1>
-                                </div>
-                            ))}
-                        </div>
-
-                        <div className="pageSelector">
-                            <button
-                                className="prevButton"
-                                onClick={() =>
-                                    page > 1
-                                        ? setPage(page - 1)
-                                        : alert("You are on the first page, there is no previous page.")
-                                }
-                            >
-                                Previous
-                            </button>
-                            <input
-                                className="pageNumberBox"
-                                type="number"
-                                min={1}
-                                max={maxPages}
-                                value={page}
-                                onChange={(event) => {
-                                    const val = Number(event.target.value);
-                                    if (val >= 1 && val <= maxPages) {
-                                        setPage(val);
-                                    } else {
-                                        alert("Page does not exist");
-                                    }
-                                }}
-                            />
-                            <button
-                                className="nextButton"
-                                onClick={() =>
-                                    page < maxPages
-                                        ? setPage(page + 1)
-                                        : alert("You are on the last page, there is no next page.")
-                                }
-                            >
-                                Next
-                            </button>
-                        </div>
-                    </>
+                  <div className="no-image">No Image Available</div>
                 )}
+              </Link>
+              <h3>{movie.title}</h3>
             </div>
-        </div>
-    );
+          ))
+        ) : (
+          <p>No movies available for this genre.</p>
+        )}
+      </div>
+      <div className="genre-view-pagination-container">
+        <button
+          className="genre-view-pagination-button"
+          onClick={() => setPage((p) => Math.max(p - 1, 1))}
+        >
+          Prev
+        </button>
+        <span className="genre-view-pagination-number">Page {page}</span>
+        <button
+          className="genre-view-pagination-button"
+          onClick={() => setPage((p) => p + 1)}
+        >
+          Next
+        </button>
+      </div>
+    </div>
+  );
 }
 
 export default GenreView;

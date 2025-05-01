@@ -1,137 +1,103 @@
-body > ul {
-  display: none !important;
-}
-
-.genre-layout {
-  display: grid;
-  grid-template-columns: auto 1fr; 
-  gap: 20px;
-  padding: 20px;
-  background-color: #0f0f0f;
-  color: #1e90ff;
-  min-height: 100vh;
-  margin-top: 80px; 
-}
-.genre-sidebar {
-  background-color: #1a1a1a;
-  padding: 20px;
-  border-right: 1px solid #333;
-  border-radius: 10px;
-  height: fit-content; 
-  align-self: flex-start;
-}
-
-.genre-sidebar h2 {
-  color: #1e90ff;
-  margin-bottom: 15px;
-  font-size: 18px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.genre-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.genre-button {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  background-color: #2a2a2a;
-  border: none;
-  border-radius: 8px;
-  color: #1e90ff;
-  font-size: 16px;
-  text-align: left;
-  cursor: pointer;
-  transition: background-color 0.2s, color 0.2s;
-}
-
-.genre-button:hover {
-  background-color: #3a3a3a;
-  color: #ffffff;
-}
-
-.genre-button.active {
-  background-color: #1e90ff;
-  color: #000000;
-  font-weight: bold;
-}
-
-.genre-main {
+.hero {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  min-height: 100vh; /* Ensures the container spans the full height of the viewport */
 }
 
-.genre-posters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center; /* Centered grid */
-}
-
-.moviePoster {
-  width: 200px;
+h2 {
+  text-align: center;
+  font-size: 2rem;
   color: #1e90ff;
+  margin-bottom: 20px;
 }
 
-.movieTitle {
+.genre-view-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 movies wide */
+  grid-template-rows: repeat(4, auto); /* 4 rows */
+  gap: 20px; /* Space between movie cards */
+  padding: 20px;
+  justify-content: center;
+  width: 90%; /* Make the container wider */
+  margin-left: auto; /* Align the container slightly to the left */
+  margin-right: auto;
+}
+
+.genre-view-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #1a1a1a;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.genre-view-item:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.8);
+}
+
+.genre-view-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px 10px 0 0; /* Rounded corners for the top */
+}
+
+.no-image {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0f0f0f;
+  color: #fff;
+  font-size: 1rem;
+  border-radius: 10px 10px 0 0;
+}
+
+.genre-view-item h3 {
   font-size: 16px;
   margin-top: 10px;
   text-align: center;
-}
-
-.posterContainer img {
+  color: #1e90ff;
+  font-weight: bold;
+  padding: 10px;
+  background-color: #1a1a1a; /* Match the background color of .genre-view-item */
   width: 100%;
-  height: auto;
-  border-radius: 10px;
-  transition: transform 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+  border-top: 1px solid #333; /* Optional: Adjust border color for consistency */
 }
 
-.posterContainer img:hover {
+.genre-view-pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.genre-view-pagination-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #ffffff;
+  background-color: #4c7dd4;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.genre-view-pagination-button:hover {
+  background-color: #1e90ff;
   transform: scale(1.05);
 }
 
-.pageSelector {
-  margin-top: 30px;
-  display: flex;
-  justify-content: center; /* Centered pagination */
-  align-items: center;
-  gap: 10px;
-  color: #1e90ff;
-}
-
-.prevButton,
-.nextButton {
-  background-color: #1a1a1a;
-  border: 1px solid #1e90ff;
-  color: #1e90ff;
-  padding: 8px 12px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.prevButton:hover,
-.nextButton:hover {
-  background-color: #1e90ff;
-  color: #000000;
-}
-
-.pageNumberBox {
-  width: 60px;
-  padding: 6px;
-  background-color: #000000;
-  border: 1px solid #1e90ff;
-  color: #1e90ff;
-  text-align: center;
-  border-radius: 5px;
-}
-
-.genreListContainer {
-  display: none;
+.genre-view-pagination-number {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ffffff;
 }

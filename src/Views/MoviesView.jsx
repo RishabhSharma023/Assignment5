@@ -1,62 +1,47 @@
-import { useState } from 'react'
-import Header from '../Components/Header.jsx'
-import Footer from '../Components/Footer.jsx'
-import GenresList from "../Components/Genres.jsx"
-import GenreView from './GenreView.jsx'
-import DetailView from './DetailView.jsx'
-import "./MoviesView.css"
+import { useEffect } from "react";
+import { useNavigate, useLocation, Outlet } from "react-router-dom";
+import Header from "../Components/Header";
+import Genres from "../Components/Genres";
+import Foooter from "../Components/Footer";
+import "./MoviesView.css";
 
-function MoviesView({ showGenresList = true }) {
-   const listOfGenres = [
-      { "genreName": "Action", "id": 28 },
-      { "genreName": "Adventure", "id": 12 },
-      { "genreName": "Animation", "id": 16 },
-      { "genreName": "Fantasy", "id": 14 },
-      { "genreName": "Science Fiction", "id": 878 },
-      { "genreName": "War", "id": 10752 },
-      { "genreName": "Comedy", "id": 35 },
-      { "genreName": "Mystery", "id": 9648 },
-      { "genreName": "Western", "id": 37 },
-      { "genreName": "Family", "id": 10751 },
-   ];
-   const [genreSelected, setGenreSelected] = useState(28);
-   const [movieIdClicked, setMovieIdClicked] = useState(912649);
-   const [detailViewDisplayed, setdetailViewDisplayed] = useState(false);
-   const [clickedFromFeature, setClickedFromFeature] = useState(false);
+function MoviesView() {
+    const navigate = useNavigate();
+    const location = useLocation();
 
-   function setGenreId(genre) {
-      setGenreSelected(genre);
-      setdetailViewDisplayed(false)
-   }
+    const genres = [
+        { genre: "Action", id: 28 },
+        { genre: "Adventure", id: 12 },
+        { genre: "Animation", id: 16 },
+        { genre: "Comedy", id: 35 },
+        { genre: "Family", id: 10751 },
+        { genre: "Fantasy", id: 14 },
+        { genre: "History", id: 36 },
+        { genre: "Horror", id: 27 },
+        { genre: "Sci-Fi", id: 878 },
+        { genre: "Thriller", id: 53 },
+    ];
 
-   function setMovieIdValue(movie) {
-      setMovieIdClicked(movie)
-      setClickedFromFeature(false)
-      setdetailViewDisplayed(true)
-   }
+    useEffect(() => {
+        if (location.pathname === "/movies") {
+            navigate(`/movies/genre/${genres[0].id}`);
+        }
+    }, [location, navigate, genres]);
 
-   function returnToGenreView() {
-      setdetailViewDisplayed(false)
-   }
-
-   return (
-      <div>
-         <Header />
-         <div className='genre-section'>
-            {showGenresList && (
-               <div className='genre-list'>
-                  <GenresList selectGenreId={setGenreId} genresList={listOfGenres} genreSelected={genreSelected} />
-               </div>
-            )}
-            <div className='genre-view'>
-               {detailViewDisplayed ?
-                  <DetailView movieId={movieIdClicked} backToGenre={returnToGenreView} clickedFromFeature={clickedFromFeature} />
-                  : <GenreView genreId={genreSelected} enterDetailView={setMovieIdValue} />}
+    return (
+        <div className="moviesView-container">
+            <Header />
+            <div className="genres-section">
+                <div className="list-of-genres">
+                    <Genres genresList={genres} />
+                </div>
+                <div className="genre-movies">
+                    <Outlet />
+                </div>
             </div>
-         </div>
-         <Footer />
-      </div>
-   )
+            <Foooter />
+        </div>
+    );
 }
 
-export default MoviesView
+export default MoviesView;
