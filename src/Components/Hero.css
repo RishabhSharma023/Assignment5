@@ -4,7 +4,7 @@
   background-color: black;
   justify-content: center;
   width: 100%;
-  margin-top: 65px; /* was 50 b4... if everything messed change this */
+  margin-top: 4%; /* was 50 b4... if everything messed change this */
   flex: 1;
 }
 

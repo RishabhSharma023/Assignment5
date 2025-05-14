@@ -12,14 +12,14 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<HomeView />} />
-        <Route path="/register" element={<RegisterView />} />
-        <Route path="/login" element={<LoginView />} />
-        <Route path="/movies" element={<MoviesView />}>
+        <Route path="/" element={<HomeView/>}/>
+        <Route path="/register" element={<RegisterView/>} />
+        <Route path="/login" element={<LoginView/>} />
+        <Route path="/movies" element={<MoviesView/>}>
           <Route path="genre/:genre_id" element={<GenreView />} />
-          <Route path="details/:id" element={<DetailView />} />
+          <Route path="details/:id" element={<DetailView/>} />
         </Route>
-        <Route path="*" element={<ErrorView />} />
+        <Route path="*" element={<ErrorView/>} />
       </Routes>
     </Router>
   );

@@ -1,7 +1,7 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
 import "./GenreView.css";
+import axios from "axios";
+import { useParams, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const genres = [
   { genre: "Action", id: 28 },
@@ -17,51 +17,55 @@ const genres = [
 ];
 
 function GenreView() {
-  const { genre_id } = useParams();
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
-  const selectedGenre = genres.find((genre) => genre.id === parseInt(genre_id));
-  const genreName = selectedGenre ? selectedGenre.genre : "Movies in Genre";
+  const { genre_id } = useParams();
+
+  const genre = genres.find((g) => g.id === parseInt(genre_id));
+  const title = genre ? genre.genre : "Movies:";
 
   useEffect(() => {
-    async function fetchMovies() {
+    const getMovies = async () => {
       try {
-        const response = await axios.get(
+        const res = await axios.get(
           `https://api.themoviedb.org/3/discover/movie?api_key=${import.meta.env.VITE_TMDB_KEY}&with_genres=${genre_id}&page=${page}`
         );
-        setMovies(response.data.results);
-      } catch (error) {
-        console.error("Error fetching movies:", error);
+        setMovies(res.data.results);
+      } catch (err) {
+        console.error("Failed to fetch movies", err);
       }
-    }
-    fetchMovies();
+    };
+
+    getMovies();
   }, [genre_id, page]);
 
   return (
     <div className="hero">
-      <h2>{genreName}</h2>
+      <h2>{title}</h2>
+
       <div className="genre-view-container">
-        {movies.length > 0 ? (
+        {movies.length ? (
           movies.map((movie) => (
             <div key={movie.id} className="genre-view-item">
               <Link to={`/movies/details/${movie.id}`}>
                 {movie.poster_path ? (
                   <img
+                    className="genre-view-picture"
                     src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
                     alt={movie.title}
-                    className="genre-view-image"
                   />
                 ) : (
-                  <div className="no-image">No Image Available</div>
+                  <div className="no-image">No Image</div>
                 )}
               </Link>
               <h3>{movie.title}</h3>
             </div>
           ))
         ) : (
-          <p>No movies available for this genre.</p>
+          <p>No movies found.</p>
         )}
       </div>
+
       <div className="genre-view-pagination-container">
         <button
           className="genre-view-pagination-button"
